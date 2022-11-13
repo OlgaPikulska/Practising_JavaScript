@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import * as storage from './storage';
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
 
@@ -11,13 +12,14 @@ player.getVideoTitle().then(function (title) {
 });
 
 const onPlay = function (currentTime) {
-  localStorage.setItem('videoplayer-current-time', currentTime.seconds);
+  storage.default.save('videoplayer-current-time', currentTime.seconds)
+  //localStorage.setItem('videoplayer-current-time', currentTime.seconds);
 };
 player.on('timeupdate', _.throttle(onPlay, 1000));
 
 
 player
-  .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
+  .setCurrentTime(storage.default.load('videoplayer-current-time'))
   .then(function (seconds) {
     // seconds = the actual time that the player seeked to
   })
