@@ -6,7 +6,7 @@ const form = document.querySelector(".feedback-form");
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
 
-form.addEventListener("input", _.throttle(saveMessage,1000));
+form.addEventListener("input", _.throttle(saveMessage,500));
 
 function saveMessage() {
     const feedback = {
