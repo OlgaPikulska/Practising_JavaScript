@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _throttle from 'lodash.throttle';
 import * as storage from './storage';
 const mail = document.querySelector("input")
 const message = document.querySelector("textarea")
@@ -6,7 +6,7 @@ const form = document.querySelector(".feedback-form");
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
 
-form.addEventListener("input", _.throttle(saveMessage,500));
+form.addEventListener("input", _throttle(saveMessage,500));
 
 function saveMessage() {
     const feedback = {

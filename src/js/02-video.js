@@ -1,5 +1,5 @@
 import Player from '@vimeo/player';
-import _ from 'lodash';
+import _throttle from 'lodash.throttle';
 import * as storage from './storage';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
@@ -13,10 +13,16 @@ player.getVideoTitle().then(function (title) {
 });
 
 const onPlay = function (currentTime) {
-  storage.default.save('videoplayer-current-time', currentTime.seconds)
-  //localStorage.setItem('videoplayer-current-time', currentTime.seconds);
+  if (currentTime.seconds !== currentTime.duration) {
+    storage.default.save('videoplayer-current-time', currentTime.seconds)
+  } else {
+    console.log("The video is over")
+    storage.default.save('videoplayer-current-time', 0)
+  }
+  
+
 };
-player.on('timeupdate', _.throttle(onPlay, 1000));
+player.on('timeupdate', _throttle(onPlay, 1000));
 
 
 player
