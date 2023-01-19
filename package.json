@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://OlgaPikulska.github.io/goit-js-hw-08/",
+  "homepage": "https://OlgaPikulska.github.io/Practising_JavaScript/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+    "build": "parcel build src/*.html --public-url /Practising_JavaScript/"
   },
   "repository": {
     "type": "git",
